@@ -1,3 +1,5 @@
+import math
+
 #Question 1
 def  compute_pi(n): #computing pi from the user
     #intializing the variables
@@ -112,11 +114,45 @@ def  compute_tax(income, status, state):
 #Question 6
 def solve_quadratic(a,  b, c):
     formula= b *b - 4 * a * c # the formula if there are solutions
+    sqrt= math.sqrt(abs(formula))
+    if formula <0:
+        return 0
+    else:
+        solution1= float((-b + sqrt(b * b -4* a * c))/ 2 * a)
+        solution2 = float((-b + sqrt(b * b - 4 * a * c)) / 2 * a)
 
 #Question7
+def sort(list):
+    list=[12,33,0,5,13]
+    for i in range (len(list)):
+        min=i
+        for j in range(i+1, len(list)):
+            if list[min]> list[j]:
+                min=j
+
+
+    list[i],list[min]= list[min], list[i]
+
+    return list
 
 #Question8
-#def id_password(first, last):
+def id_password(first, last):
+    userName= first[0] + last #User ID is the first letter of the first name followed by last name
+    print(userName.upper()) #username works
+    #size= first[-1] # The size to ge the last letter
+    # the first and last letter of the first name and the first three letters of the last name
+    # the length of the first and last name
+    passWord= len(first)+len(last)
+
+    #print(first[0, size-1] + last[0:3])
+    print("Length" , len(first), len(last)) # works
+    print("FIRST: ", first[0:-1])
+    print("LAST:", last[0:3])
+    #passWord= first[0, size] + last[0:3] +len(first)+len(last)
+    #print(passWord.upper())
+
+    return userName.upper(), passWord.upper()
+
 
 
 #Question 9
@@ -181,6 +217,31 @@ def main():#main Menu to choose the options from
 
             total_float= "{:.2f}".format(total)
             print("Tax amount is ", total_float)
+        if choice == '6':
+            print("Enter the 3 values for the quadratic function")
+            a= int(input("Enter a: "))
+            b= int(input("Enter b: "))
+            c= int(input ("Enter c: "))
+
+            if a==0:
+                print("Cannot be a non-zero value: ")
+            else:
+                q= solve_quadratic(a,  b, c)
+                if q==0:
+                    print("The equation has no roots")
+                else:
+                    print("The equation has root ",q)
+
+        if choice == '7':
+            print("Sorted Array" )
+            for i in range(len (sort(list))):
+                print(sort(list))
+
+        if choice == '8':
+            first= input("Enter your first name: ")
+            last= input ("Enter your last Name: ")
+            print(id_password(first, last))
+
 
         print("\n1- Computing PI\n")
         print("2- Computing Square Root\n")
@@ -195,6 +256,7 @@ def main():#main Menu to choose the options from
         choice = input("Enter the menu: ")
 
 main()
+
 
 
 
